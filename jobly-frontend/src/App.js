@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import NavBar from "./NavBar";
 import Home from "./Home";
 import CompanyList from "./CompanyList";
 import CompanyDetail from "./CompanyDetail";
@@ -9,10 +10,17 @@ import Signup from "./Signup";
 import Profile from "./Profile";
 import './App.css';
 
+/**
+ * Main component for setting up routing and navbar
+ * @returns JSX code for rendering navbar and routing
+ */
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <div className="App">
       <BrowserRouter>
+        <NavBar user={ user } />
         <Switch>
           <Route exact path="/"><Home /></Route>
           <Route exact path="/companies"><CompanyList /></Route>
