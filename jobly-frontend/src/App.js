@@ -9,7 +9,6 @@ import JobList from "./JobList";
 import Login from "./Login";
 import Signup from "./Signup";
 import Profile from "./Profile";
-import './App.css';
 
 /**
  * Main component for setting up routing and navbar

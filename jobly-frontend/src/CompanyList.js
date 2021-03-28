@@ -5,7 +5,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import CompanyCard from "./CompanyCard";
-import "./CompanyList.css";
 
 /**
  * Component for showing list of companies and search box for filtering
