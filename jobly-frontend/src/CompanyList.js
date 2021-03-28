@@ -19,7 +19,7 @@ const CompanyList = ({ companies, findAllCompanies }) => {
 
   /**
    * Updates filter when user types in searchbox
-   * @param {Object} evt 
+   * @param {Object{any}} evt 
    */
   const handleChange = evt => {
     const { value } = evt.target;
@@ -28,7 +28,7 @@ const CompanyList = ({ companies, findAllCompanies }) => {
 
   /**
    * Stops reloading page and gets filtered companies
-   * @param {Object} evt 
+   * @param {Object{any}} evt 
    */
   const handleSubmit = evt => {
     evt.preventDefault();
