@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="CompanyList container"
+  >
+    <form
+      class=""
+    >
+      <div
+        class="form-group row"
+      >
+        <div
+          class="p-0 col-10"
+        >
+          <input
+            class="form-control"
+            id="formSearchBox"
+            placeholder="Enter search term..."
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="col-2"
+        >
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+    <div
+      class="row"
+    >
+      <div
+        class="p-0 col-12"
+      >
+        <a
+          href="/companies/test-1"
+        >
+          <div
+            class="card"
+            data-testid="test-1"
+          >
+            <div
+              class="card-body"
+            >
+              <div
+                class="card-title h5"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-10"
+                  >
+                    Test 1
+                  </div>
+                  <div
+                    class="col-2"
+                  >
+                    <div
+                      data-testid="/logos/logo1.png"
+                      style="width: 50px; content: url(/logos/logo1.png);"
+                    >
+                       
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p
+                class="card-text"
+              >
+                Test Description 1
+              </p>
+            </div>
+          </div>
+        </a>
+        <a
+          href="/companies/test-2"
+        >
+          <div
+            class="card"
+            data-testid="test-2"
+          >
+            <div
+              class="card-body"
+            >
+              <div
+                class="card-title h5"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-10"
+                  >
+                    Test 2
+                  </div>
+                  <div
+                    class="col-2"
+                  >
+                    <div
+                      data-testid="/logos/logo2.png"
+                      style="width: 50px; content: url(/logos/logo2.png);"
+                    >
+                       
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p
+                class="card-text"
+              >
+                Test Description 2
+              </p>
+            </div>
+          </div>
+        </a>
+        <a
+          href="/companies/test-3"
+        >
+          <div
+            class="card"
+            data-testid="test-3"
+          >
+            <div
+              class="card-body"
+            >
+              <div
+                class="card-title h5"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-10"
+                  >
+                    Test 3
+                  </div>
+                  <div
+                    class="col-2"
+                  >
+                    <div
+                      data-testid="/logos/logo3.png"
+                      style="width: 50px; content: url(/logos/logo3.png);"
+                    >
+                       
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p
+                class="card-text"
+              >
+                Test Description 3
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

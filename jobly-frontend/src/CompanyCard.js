@@ -11,10 +11,10 @@ import Col from "react-bootstrap/Col";
 const CompanyCard = ({ company }) => {
   // Learned how to use local image at https://www.freecodecamp.org/news/react-background-image-tutorial-how-to-set-backgroundimage-with-inline-css-style/
   return (
-    <Card>
+    <Card data-testid={ company.handle }>
       <Card.Body>
         <Card.Title>
-          <Row className="justify-content-left">
+          <Row>
             <Col xs={ 10 }>
               { company.name }
             </Col>
@@ -25,6 +25,7 @@ const CompanyCard = ({ company }) => {
                   style={
                     { width: "50px", content: `url(${company.logoUrl})` }
                   }
+                  data-testid={ company.logoUrl }
                 >
                   &nbsp;
                 </div>
