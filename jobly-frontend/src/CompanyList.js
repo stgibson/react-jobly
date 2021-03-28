@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import CompanyCard from "./CompanyCard";
+import "./CompanyList.css";
 
 /**
  * Component for showing list of companies and search box for filtering
@@ -42,10 +44,10 @@ const CompanyList = ({ companies, findAllCompanies }) => {
   // Learned how to use react-bootstrap container at https://react-bootstrap.github.io/layout/grid/
   // Learned how to change padding at https://mdbootstrap.com/docs/react/utilities/spacing/
   return (
-    <Container>
+    <Container className="CompanyList">
       <Form onSubmit={ handleSubmit }>
         <Form.Group as={ Row } controlId="formSearchBox">
-          <Col xs={ { span: 6, offset: 2 } } className="p-0">
+          <Col xs={ 10 } className="p-0">
             <Form.Control type="text" placeholder="Enter search term..." onChange={ handleChange } value={ filter } />
           </Col>
           <Col xs={ 2 }>
@@ -54,8 +56,14 @@ const CompanyList = ({ companies, findAllCompanies }) => {
         </Form.Group>
       </Form>
       <Row>
-        <Col xs={ { span: 8, offset: 2 } } className="p-0">
-          { companies.map(company => <CompanyCard key={ company.handle } company={ company } />) }
+        <Col xs={ 12 } className="p-0">
+          {
+            companies.map(company => (
+              <Link to={ `companies/${company.handle}` }>
+                <CompanyCard key={ company.handle } company={ company } />
+              </Link>
+            ))
+          }
         </Col>
       </Row>
     </Container>

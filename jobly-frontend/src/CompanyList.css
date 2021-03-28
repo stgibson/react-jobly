@@ -1,0 +1,9 @@
+.CompanyList a {
+  color: black;
+}
+
+/* Learned how to style hovering over link at https://www.w3schools.com/cssref/sel_hover.asp */
+.CompanyList a:hover {
+  color: blue;
+  text-decoration: none;
+}

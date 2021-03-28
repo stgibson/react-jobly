@@ -2,9 +2,7 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  <div
-    class="App"
-  >
+  <div>
     <div
       class="NavBar"
     >

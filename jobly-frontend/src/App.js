@@ -30,8 +30,16 @@ function App() {
     else {
       newCompanies = await JoblyApi.findAllCompanies({ name: filter });
     }
-    console.log(newCompanies);
     setCompanies(newCompanies);
+  };
+
+  /**
+   * Gets company with given handle
+   * @param {string} handle 
+   * @returns company
+   */
+  const getCompany = async handle => {
+    return await JoblyApi.getCompany(handle);
   };
 
   // initialize companies to list all companies
@@ -49,7 +57,7 @@ function App() {
               findAllCompanies={ findAllCompanies }
             />
           </Route>
-          <Route exact path="/companies/:handle"><CompanyDetail /></Route>
+          <Route exact path="/companies/:handle"><CompanyDetail user={ user } getCompany={ getCompany } /></Route>
           <Route exact path="/jobs"><JobList /></Route>
           <Route exact path="/login"><Login /></Route>
           <Route exact path="/signup"><Signup /></Route>
