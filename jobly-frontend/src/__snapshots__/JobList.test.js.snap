@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <form
+      class=""
+    >
+      <div
+        class="form-group row"
+      >
+        <div
+          class="p-0 col-10"
+        >
+          <input
+            class="form-control"
+            id="formSearchBox"
+            placeholder="Enter search term..."
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="col-2"
+        >
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+    <div
+      class="row"
+    >
+      <div
+        class="p-0 col-12"
+      >
+        <div
+          class="card"
+          data-testid="1"
+        >
+          <div
+            class="card-body"
+          >
+            <div
+              class="card-title h5"
+            >
+              Test 1
+            </div>
+            <p
+              class="card-text"
+            >
+              Salary: 100
+            </p>
+            <p
+              class="card-text"
+            >
+              Equity: 0.1
+            </p>
+          </div>
+        </div>
+        <div
+          class="card"
+          data-testid="2"
+        >
+          <div
+            class="card-body"
+          >
+            <div
+              class="card-title h5"
+            >
+              Test 2
+            </div>
+            <p
+              class="card-text"
+            >
+              Salary: 200
+            </p>
+            <p
+              class="card-text"
+            >
+              Equity: 0.2
+            </p>
+          </div>
+        </div>
+        <div
+          class="card"
+          data-testid="3"
+        >
+          <div
+            class="card-body"
+          >
+            <div
+              class="card-title h5"
+            >
+              Test 3
+            </div>
+            <p
+              class="card-text"
+            >
+              Salary: 300
+            </p>
+            <p
+              class="card-text"
+            >
+              Equity: 0.3
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

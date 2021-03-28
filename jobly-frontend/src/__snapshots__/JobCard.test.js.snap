@@ -4,6 +4,7 @@ exports[`matches snapshot 1`] = `
 <DocumentFragment>
   <div
     class="card"
+    data-testid="1"
   >
     <div
       class="card-body"
@@ -15,14 +16,14 @@ exports[`matches snapshot 1`] = `
       </div>
       <p
         class="card-text"
-      />
-      <div>
+      >
         Salary: 100
-      </div>
-      <div>
+      </p>
+      <p
+        class="card-text"
+      >
         Equity: 0.5
-      </div>
-      <p />
+      </p>
     </div>
   </div>
 </DocumentFragment>

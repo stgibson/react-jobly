@@ -49,6 +49,13 @@ class JoblyApi {
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
+
+  /** Get list of jobs, possibly by filter */
+
+  static async findAllJobs(filters = {}) {
+    let res = await this.request("jobs", filters);
+    return res.jobs;
+  }
 }
 
 // for now, put token ("testuser" / "password" on class)

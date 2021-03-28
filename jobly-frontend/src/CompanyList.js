@@ -11,7 +11,7 @@ import "./CompanyList.css";
 /**
  * Component for showing list of companies and search box for filtering
  * companies
- * @param {Object{Object{string|number}|function}} param0 
+ * @param {Object{Array[Object{string|number}]|function}} param0 
  * @returns JSX code for rendering company list
  */
 const CompanyList = ({ companies, findAllCompanies }) => {

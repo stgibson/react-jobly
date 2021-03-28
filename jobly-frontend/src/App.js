@@ -17,9 +17,10 @@ import Profile from "./Profile";
 function App() {
   const [user, setUser] = useState(null);
   const [companies, setCompanies] = useState([]);
+  const [jobs, setJobs] = useState([]);
 
   /**
-   * Updates companies using filter, if there is any
+   * Updates companies using filter, if provided
    * @param {string|undefined} filter 
    */
   const findAllCompanies = async filter => {
@@ -42,8 +43,26 @@ function App() {
     return await JoblyApi.getCompany(handle);
   };
 
-  // initialize companies to list all companies
-  useEffect(findAllCompanies, [])
+  /**
+   * Updates jobs using filter, if provided
+   * @param {string|undefined} filter 
+   */
+  const findAllJobs = async filter => {
+    let newJobs;
+    if (!filter) {
+      newJobs = await JoblyApi.findAllJobs();
+    }
+    else {
+      newJobs = await JoblyApi.findAllJobs({ title: filter });
+    }
+    setJobs(newJobs);
+  };
+
+  // get list of all companies & jobs
+  useEffect(() => {
+    findAllCompanies();
+    findAllJobs();
+  }, []);
 
   return (
     <div>
@@ -57,8 +76,12 @@ function App() {
               findAllCompanies={ findAllCompanies }
             />
           </Route>
-          <Route exact path="/companies/:handle"><CompanyDetail user={ user } getCompany={ getCompany } /></Route>
-          <Route exact path="/jobs"><JobList /></Route>
+          <Route exact path="/companies/:handle">
+            <CompanyDetail user={ user } getCompany={ getCompany } />
+          </Route>
+          <Route exact path="/jobs">
+            <JobList user={ user } jobs={ jobs } findAllJobs={ findAllJobs } />
+          </Route>
           <Route exact path="/login"><Login /></Route>
           <Route exact path="/signup"><Signup /></Route>
           <Route exact path="/profile"><Profile /></Route>
