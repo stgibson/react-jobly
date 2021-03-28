@@ -4,7 +4,7 @@ import "./NavBar.css";
 
 /**
  * Component for displaying navbar
- * @param {Object{Object{string | boolean}}} { user } 
+ * @param {Object{Object{string|boolean|Object{number}}}} param0
  * @returns JSX code for rendering navbar
  */
 const NavBar = ({ user }) => {

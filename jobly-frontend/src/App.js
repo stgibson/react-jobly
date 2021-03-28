@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import JoblyApi from "./api";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import CompanyList from "./CompanyList";
@@ -16,14 +17,39 @@ import './App.css';
  */
 function App() {
   const [user, setUser] = useState(null);
+  const [companies, setCompanies] = useState([]);
+
+  /**
+   * Updates companies using filter, if there is any
+   * @param {string|undefined} filter 
+   */
+  const findAllCompanies = async filter => {
+    let newCompanies;
+    if (!filter) {
+      newCompanies = await JoblyApi.findAllCompanies();
+    }
+    else {
+      newCompanies = await JoblyApi.findAllCompanies({ name: filter });
+    }
+    console.log(newCompanies);
+    setCompanies(newCompanies);
+  };
+
+  // initialize companies to list all companies
+  useEffect(findAllCompanies, [])
 
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         <NavBar user={ user } />
         <Switch>
           <Route exact path="/"><Home /></Route>
-          <Route exact path="/companies"><CompanyList /></Route>
+          <Route exact path="/companies">
+            <CompanyList
+              companies={ companies }
+              findAllCompanies={ findAllCompanies }
+            />
+          </Route>
           <Route exact path="/companies/:handle"><CompanyDetail /></Route>
           <Route exact path="/jobs"><JobList /></Route>
           <Route exact path="/login"><Login /></Route>
