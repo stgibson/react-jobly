@@ -5,10 +5,10 @@ import JobCard from "./JobCard";
 
 /**
  * Component for displaying company details and list of company's jobs
- * @param {Object{Object{string|boolean|Object{number}}}|function} param0 
+ * @param {Object{function}} param0 
  * @returns JSX code for rendering company details and jobs
  */
-const CompanyDetail = ({ user, getCompany, apply }) => {
+const CompanyDetail = ({ getCompany, apply }) => {
   const [company, setCompany] = useState({});
 
   const { handle } = useParams();
@@ -20,7 +20,7 @@ const CompanyDetail = ({ user, getCompany, apply }) => {
       setCompany(currCompany);
     }
     updateCompany();
-  }, [handle]);
+  }, [handle, getCompany]);
 
   return (
     <Container>
@@ -31,7 +31,6 @@ const CompanyDetail = ({ user, getCompany, apply }) => {
           company.jobs.map(job => (
             <JobCard
               key={ job.id }
-              user={ user }
               job={ job }
               apply={ apply }
             />

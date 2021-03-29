@@ -2,8 +2,9 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
 import NavBar from "./NavBar";
+import CurrentUserContext from "./CurrentUserContext";
 
-const user = {
+const currentUser = {
   username: "test",
   firstName: "Test",
   lastName: "User",
@@ -24,7 +25,7 @@ it("matches snapshot", () => {
 
 it("only shows Login & Sign Up when no user is passed", () => {
   const { queryByText } =
-    render(<MemoryRouter><NavBar user={ null }/></MemoryRouter>);
+    render(<MemoryRouter><NavBar /></MemoryRouter>);
   
   expect(queryByText("Login")).toBeInTheDocument();
   expect(queryByText("Sign Up")).toBeInTheDocument();
@@ -35,7 +36,11 @@ it("only shows Login & Sign Up when no user is passed", () => {
 
 it("only shows Companies, Jobs, & Profile when user is passed", () => {
   const { queryByText } =
-    render(<MemoryRouter><NavBar user={ user }/></MemoryRouter>);
+    render(
+      <CurrentUserContext.Provider value={ currentUser }>
+        <MemoryRouter><NavBar /></MemoryRouter>
+      </CurrentUserContext.Provider>
+    );
   
   expect(queryByText("Companies")).toBeInTheDocument();
   expect(queryByText("Jobs")).toBeInTheDocument();

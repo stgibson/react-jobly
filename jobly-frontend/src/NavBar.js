@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import CurrentUserContext from "./CurrentUserContext";
 import "./NavBar.css";
 
 /**
  * Component for displaying navbar
- * @param {Object{Object{string|boolean|Object{number}}}} param0
  * @returns JSX code for rendering navbar
  */
-const NavBar = ({ user }) => {
-  if (user) {
+const NavBar = () => {
+  const currentUser = useContext(CurrentUserContext);
+
+  if (currentUser) {
     return (
       <div className="NavBar">
-        <Link to="/">Jobly</Link>
-        <NavLink to="/companies">Companies</NavLink>
-        <NavLink to="/jobs">Jobs</NavLink>
-        <NavLink to="/profile">Profile</NavLink>
+        <Link className="NavBar-brand" to="/">Jobly</Link>
+        <NavLink className="NavBar-link" to="/companies">Companies</NavLink>
+        <NavLink className="NavBar-link" to="/jobs">Jobs</NavLink>
+        <NavLink className="NavBar-link" to="/profile">Profile</NavLink>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -47,10 +48,10 @@ const CompanyList = ({ companies, findAllCompanies }) => {
     <Container className="CompanyList">
       <Form onSubmit={ handleSubmit }>
         <Form.Group as={ Row } controlId="formSearchBox">
-          <Col xs={ 10 } className="p-0">
+          <Col key={ uuid() } xs={ 10 } className="p-0">
             <Form.Control type="text" placeholder="Enter search term..." onChange={ handleChange } value={ filter } />
           </Col>
-          <Col xs={ 2 }>
+          <Col key={ uuid() } xs={ 2 }>
             <Button variant="primary" type="submit">Submit</Button>
           </Col>
         </Form.Group>
@@ -59,8 +60,11 @@ const CompanyList = ({ companies, findAllCompanies }) => {
         <Col xs={ 12 } className="p-0">
           {
             companies.map(company => (
-              <Link to={ `companies/${company.handle}` }>
-                <CompanyCard key={ company.handle } company={ company } />
+              <Link
+                key={ company.handle }
+                to={ `companies/${company.handle}` }
+              >
+                <CompanyCard company={ company } />
               </Link>
             ))
           }

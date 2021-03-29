@@ -29,32 +29,47 @@ class JoblyApi {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
-      let message = err.response.data.error.message;
+      const message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
 
   // Individual API routes
 
-  /** Get list of companies, possibly by filter */
+  /** Gets token for user. */
+
+  static async getToken(data) {
+    const res = await this.request("auth/token", data, "post");
+    this.token = res.token;
+    return this.token;
+  }
+
+  /** Get list of companies, possibly by filter. */
 
   static async findAllCompanies(filters = {}) {
-    let res = await this.request("companies", filters);
+    const res = await this.request("companies", filters);
     return res.companies;
   }
 
   /** Get details on a company by handle. */
 
   static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
+    const res = await this.request(`companies/${handle}`);
     return res.company;
   }
 
-  /** Get list of jobs, possibly by filter */
+  /** Get list of jobs, possibly by filter. */
 
   static async findAllJobs(filters = {}) {
-    let res = await this.request("jobs", filters);
+    const res = await this.request("jobs", filters);
     return res.jobs;
+  }
+
+  /** Get details on a user by username. */
+
+  static async getUser(username) {
+    const res = await this.request(`users/${username}`);
+    return res.user;
   }
 }
 

@@ -9,11 +9,11 @@ import JobCard from "./JobCard";
 /**
  * Component for listing jobs with a search box for filtering jobs
  * @param
- * {Object{Object{string|boolean|Object{number}}}|Object{Array[Object{number|string}]}|function}
+ * {Object{Object{Array[Object{number|string}]}|function}}
  * param0 
  * @returns JSX code for rendering job list and search box
  */
-const JobList = ({ user, jobs, findAllJobs, apply }) => {
+const JobList = ({ jobs, findAllJobs, apply }) => {
   const [filter, setFilter] = useState("");
 
   /**
@@ -60,7 +60,6 @@ const JobList = ({ user, jobs, findAllJobs, apply }) => {
             jobs.map(job => (
               <JobCard
                 key={ job.id }
-                user={ user }
                 job={ job }
                 apply={ apply }
               />
