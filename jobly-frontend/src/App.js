@@ -106,10 +106,14 @@ function App() {
 
   // when token updated, update current user
   useEffect(() => {
-    if (token) {
+    const getCurrentUser = async () => {
       const { username } = jwt.decode(token);
-      const user = JoblyApi.getUser(username);
+      const user = await JoblyApi.getUser(username);
       setCurrentUser(user);
+    };
+
+    if (token) {
+      getCurrentUser();
     }
   }, [token])
 
