@@ -23,7 +23,26 @@ function App() {
   const [jobs, setJobs] = useState([]);
 
   /**
-   * Logs user in by getting token, provided they gave valid credentials
+   * Creates account for new user and updates token, and returns any errors
+   * @param {Object{string}} data 
+   * @returns 
+   */
+  const signup = async data => {
+    let errors = [];
+    try {
+      const newToken = await JoblyApi.register(data);
+      setToken(newToken);
+    }
+    catch (err) {
+      errors = err;
+    }
+    finally {
+      return { errors };
+    }
+  };
+
+  /**
+   * Logs user in by getting token, and returns any errors
    * @param {Object{string}} data 
    */
   const login = async data => {
@@ -114,7 +133,7 @@ function App() {
               <JobList jobs={ jobs } findAllJobs={ findAllJobs } />
             </Route>
             <Route exact path="/login"><Login login={ login } /></Route>
-            <Route exact path="/signup"><Signup /></Route>
+            <Route exact path="/signup"><Signup signup={ signup } /></Route>
             <Route exact path="/profile"><Profile /></Route>
             <Route><Redirect to="/" /></Route>
           </Switch>

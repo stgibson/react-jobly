@@ -44,6 +44,14 @@ class JoblyApi {
     return this.token;
   }
 
+  /** Registers user and gets token for new user. */
+
+  static async register(data) {
+    const res = await this.request("auth/register", data, "post");
+    this.token = res.token;
+    return this.token;
+  }
+
   /** Get list of companies, possibly by filter. */
 
   static async findAllCompanies(filters = {}) {
