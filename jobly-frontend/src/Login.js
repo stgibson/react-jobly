@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -51,13 +52,25 @@ const Login = ({ login }) => {
             <Form onSubmit={ handleSubmit }>
               <Form.Group controlId="username">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="text" onChange={ handleChange } value={ formData.username } />
+                <Form.Control
+                  type="text"
+                  onChange={ handleChange }
+                  value={ formData.username }
+                />
               </Form.Group>
               <Form.Group controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" onChange={ handleChange }  value={ formData.password } />
+                <Form.Control
+                  type="password"
+                  onChange={ handleChange }
+                  value={ formData.password }
+                />
               </Form.Group>
-              { errors.map(error => <Alert variant="danger">{ error }</Alert>) }
+              {
+                errors.map(error => (
+                  <Alert key={ uuid() } variant="danger">{ error }</Alert>
+                ))
+              }
               <Button variant="primary" type="submit">Submit</Button>
             </Form>
           </Col>
