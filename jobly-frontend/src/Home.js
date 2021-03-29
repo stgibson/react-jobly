@@ -7,6 +7,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
+/**
+ * Component for displaying home page
+ * @returns JSX code for rendering the home page
+ */
 const Home = () => {
   const currentUser = useContext(CurrentUserContext);
 
