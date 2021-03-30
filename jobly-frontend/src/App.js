@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import jwt from "jsonwebtoken";
+import { useLocalStorage } from "./hooks";
 import JoblyApi from "./api";
 import NavBar from "./NavBar";
 import Home from "./Home";
@@ -21,6 +22,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [companies, setCompanies] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [getTokenStorage, setTokenStroage] = useLocalStorage("token");
 
   /**
    * Creates account for new user and updates token, and returns any errors
@@ -31,6 +33,7 @@ function App() {
     let errors = [];
     try {
       const newToken = await JoblyApi.register(data);
+      setTokenStroage(newToken);
       setToken(newToken);
     }
     catch (err) {
@@ -49,6 +52,7 @@ function App() {
     let errors = [];
     try {
       const newToken = await JoblyApi.getToken(data);
+      setTokenStroage(newToken);
       setToken(newToken);
     }
     catch (err) {
@@ -63,6 +67,7 @@ function App() {
    * Logs user out by setting token and currentUser to null
    */
   const logout = () => {
+    setTokenStroage(null);
     setToken(null);
     setCurrentUser(null);
   };
@@ -110,6 +115,14 @@ function App() {
   useEffect(() => {
     findAllCompanies();
     findAllJobs();
+  }, []);
+
+  // when app first renders, check if token in localStorage
+  useEffect(() => {
+    const tokenStorage = getTokenStorage();
+    if (tokenStorage) {
+      setToken(tokenStorage);
+    }
   }, []);
 
   // when token updated, update current user
