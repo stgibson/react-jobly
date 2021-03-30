@@ -113,6 +113,23 @@ function App() {
     setJobs(newJobs);
   };
 
+  /**
+   * Gets current user details and stores in state
+   */
+  const getCurrentUser = async () => {
+    const decodedToken = jwt.decode(token);
+    if (decodedToken && decodedToken.username) {
+      const user = await JoblyApi.getUser(decodedToken.username);
+      setCurrentUser(user);
+    }
+  };
+
+  /**
+   * Edits user details with data, provided password is valid
+   * @param {Object{string}} data 
+   * @param {string} password 
+   * @returns list of errors
+   */
   const editUser = async (data, password) => {
     let errors = [];
     try {
@@ -141,6 +158,16 @@ function App() {
     findAllJobs();
   }, []);
 
+  /**
+   * Current user applies for job with id jobId. Also gets user again to
+   * reflect recent change of applying for a job.
+   * @param {number} jobId 
+   */
+  const apply = async jobId => {
+    await JoblyApi.apply(currentUser.username, jobId);
+    getCurrentUser();
+  };
+
   // when app first renders, check if token in localStorage
   useEffect(() => {
     const tokenStorage = getTokenStorage();
@@ -152,14 +179,6 @@ function App() {
 
   // when token updated, update current user
   useEffect(() => {
-    const getCurrentUser = async () => {
-      const decodedToken = jwt.decode(token);
-      if (decodedToken && decodedToken.username) {
-        const user = await JoblyApi.getUser(decodedToken.username);
-        setCurrentUser(user);
-      }
-    };
-
     if (token) {
       getCurrentUser();
     }
@@ -179,10 +198,10 @@ function App() {
               />
             </Route>
             <Route exact path="/companies/:handle">
-              <CompanyDetail getCompany={ getCompany } />
+              <CompanyDetail getCompany={ getCompany } apply={ apply } />
             </Route>
             <Route exact path="/jobs">
-              <JobList jobs={ jobs } findAllJobs={ findAllJobs } />
+              <JobList jobs={ jobs } findAllJobs={ findAllJobs } apply={ apply } />
             </Route>
             <Route exact path="/login"><Login login={ login } /></Route>
             <Route exact path="/signup"><Signup signup={ signup } /></Route>
