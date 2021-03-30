@@ -70,6 +70,7 @@ function App() {
     setTokenStroage(null);
     setToken(null);
     setCurrentUser(null);
+    // JoblyApi.removeToken();
   };
 
   /**
@@ -121,6 +122,7 @@ function App() {
   useEffect(() => {
     const tokenStorage = getTokenStorage();
     if (tokenStorage) {
+      JoblyApi.setToken(tokenStorage);
       setToken(tokenStorage);
     }
   }, []);
@@ -128,9 +130,14 @@ function App() {
   // when token updated, update current user
   useEffect(() => {
     const getCurrentUser = async () => {
-      const { username } = jwt.decode(token);
-      const user = await JoblyApi.getUser(username);
-      setCurrentUser(user);
+      console.log("token:");
+      console.dir(token);
+      const decodedToken = jwt.decode(token);
+      console.log(`decodedToken: ${decodedToken}`);
+      if (decodedToken && decodedToken.username) {
+        const user = await JoblyApi.getUser(decodedToken.username);
+        setCurrentUser(user);
+      }
     };
 
     if (token) {

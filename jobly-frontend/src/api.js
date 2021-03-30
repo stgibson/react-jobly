@@ -44,6 +44,18 @@ class JoblyApi {
     return this.token;
   }
 
+  /** Sets token for user. */
+
+  static async setToken(token) {
+    this.token = token;
+  }
+
+  /** Removes token for when user is logging out. */
+
+  static removeToken() {
+    this.token = null;
+  }
+
   /** Registers user and gets token for new user. */
 
   static async register(data) {
