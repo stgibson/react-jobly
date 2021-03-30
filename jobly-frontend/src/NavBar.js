@@ -7,7 +7,7 @@ import "./NavBar.css";
  * Component for displaying navbar
  * @returns JSX code for rendering navbar
  */
-const NavBar = () => {
+const NavBar = ({ logout }) => {
   const currentUser = useContext(CurrentUserContext);
 
   if (currentUser) {
@@ -17,6 +17,7 @@ const NavBar = () => {
         <NavLink className="NavBar-link" to="/companies">Companies</NavLink>
         <NavLink className="NavBar-link" to="/jobs">Jobs</NavLink>
         <NavLink className="NavBar-link" to="/profile">Profile</NavLink>
+        <Link className="NavBar-link" exact to="/" onClick={ logout }>{ `Log out ${currentUser.username}` }</Link>
       </div>
     );
   }

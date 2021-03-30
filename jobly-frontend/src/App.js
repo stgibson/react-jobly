@@ -60,6 +60,14 @@ function App() {
   };
 
   /**
+   * Logs user out by setting token and currentUser to null
+   */
+  const logout = () => {
+    setToken(null);
+    setCurrentUser(null);
+  };
+
+  /**
    * Updates companies using filter, if provided
    * @param {string|undefined} filter 
    */
@@ -121,7 +129,7 @@ function App() {
     <div>
       <CurrentUserContext.Provider value={ currentUser }>
         <BrowserRouter>
-          <NavBar />
+          <NavBar logout={ logout } />
           <Switch>
             <Route exact path="/"><Home /></Route>
             <Route exact path="/companies">

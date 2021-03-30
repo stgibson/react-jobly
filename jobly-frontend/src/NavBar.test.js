@@ -34,7 +34,8 @@ it("only shows Login & Sign Up when no user is passed", () => {
   expect(queryByText("Profile")).not.toBeInTheDocument();
 });
 
-it("only shows Companies, Jobs, & Profile when user is passed", () => {
+it("only shows Companies, Jobs, Profile, & Log out test when user is passed",
+  () => {
   const { queryByText } =
     render(
       <CurrentUserContext.Provider value={ currentUser }>
@@ -45,6 +46,7 @@ it("only shows Companies, Jobs, & Profile when user is passed", () => {
   expect(queryByText("Companies")).toBeInTheDocument();
   expect(queryByText("Jobs")).toBeInTheDocument();
   expect(queryByText("Profile")).toBeInTheDocument();
+  expect(queryByText("Log out test")).toBeInTheDocument();
   expect(queryByText("Login")).not.toBeInTheDocument();
   expect(queryByText("Sign Up")).not.toBeInTheDocument();
 });
