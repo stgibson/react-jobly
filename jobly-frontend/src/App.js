@@ -70,7 +70,7 @@ function App() {
     setTokenStroage(null);
     setToken(null);
     setCurrentUser(null);
-    // JoblyApi.removeToken();
+    JoblyApi.removeToken();
   };
 
   /**
