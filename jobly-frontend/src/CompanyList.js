@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import { useLocalStorage } from "./hooks";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -17,6 +18,8 @@ import "./CompanyList.css";
  */
 const CompanyList = ({ companies, findAllCompanies }) => {
   const [filter, setFilter] = useState("");
+  const [getToken] = useLocalStorage("token");
+  const history = useHistory();
 
   /**
    * Updates filter when user types in searchbox
@@ -40,6 +43,13 @@ const CompanyList = ({ companies, findAllCompanies }) => {
       findAllCompanies(filter);
     }
   };
+
+  // on 1st render, verify user is logged in, otherwise redirect to login page
+  useEffect(() => {
+    if (!getToken()) {
+      history.push("/login");
+    }
+  }, []);
 
   // Learned how to use react-bootstrap forms at https://react-bootstrap.github.io/components/forms/
   // Learned how to use react-bootstrap container at https://react-bootstrap.github.io/layout/grid/

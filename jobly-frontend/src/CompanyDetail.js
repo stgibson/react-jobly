@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { useLocalStorage } from "./hooks";
 import Container from "react-bootstrap/Container";
 import JobCard from "./JobCard";
 
@@ -10,6 +11,8 @@ import JobCard from "./JobCard";
  */
 const CompanyDetail = ({ getCompany, apply }) => {
   const [company, setCompany] = useState({});
+  const [getToken] = useLocalStorage("token");
+  const history = useHistory();
 
   const { handle } = useParams();
 
@@ -21,6 +24,13 @@ const CompanyDetail = ({ getCompany, apply }) => {
     }
     updateCompany();
   }, [handle, getCompany]);
+
+  // on 1st render, verify user is logged in, otherwise redirect to login page
+  useEffect(() => {
+    if (!getToken()) {
+      history.push("/login");
+    }
+  }, []);
 
   return (
     <Container>

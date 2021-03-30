@@ -22,7 +22,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [companies, setCompanies] = useState([]);
   const [jobs, setJobs] = useState([]);
-  const [getTokenStorage, setTokenStroage] = useLocalStorage("token");
+  const [getTokenStorage, setTokenStroage, removeTokenStorage] =
+    useLocalStorage("token");
 
   /**
    * Creates account for new user and updates token, and returns any errors
@@ -67,7 +68,7 @@ function App() {
    * Logs user out by setting token and currentUser to null
    */
   const logout = () => {
-    setTokenStroage(null);
+    removeTokenStorage(null);
     setToken(null);
     setCurrentUser(null);
     JoblyApi.removeToken();
@@ -130,10 +131,7 @@ function App() {
   // when token updated, update current user
   useEffect(() => {
     const getCurrentUser = async () => {
-      console.log("token:");
-      console.dir(token);
       const decodedToken = jwt.decode(token);
-      console.log(`decodedToken: ${decodedToken}`);
       if (decodedToken && decodedToken.username) {
         const user = await JoblyApi.getUser(decodedToken.username);
         setCurrentUser(user);

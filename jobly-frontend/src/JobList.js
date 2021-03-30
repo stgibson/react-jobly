@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useLocalStorage } from "./hooks";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -15,6 +17,8 @@ import JobCard from "./JobCard";
  */
 const JobList = ({ jobs, findAllJobs, apply }) => {
   const [filter, setFilter] = useState("");
+  const [getToken] = useLocalStorage("token");
+  const history = useHistory();
 
   /**
    * Updates filter when user types in searchbox
@@ -38,6 +42,13 @@ const JobList = ({ jobs, findAllJobs, apply }) => {
       findAllJobs(filter);
     }
   };
+
+  // on 1st render, verify user is logged in, otherwise redirect to login page
+  useEffect(() => {
+    if (!getToken()) {
+      history.push("/login");
+    }
+  }, []);
 
   // Learned how to use react-bootstrap forms at https://react-bootstrap.github.io/components/forms/
   // Learned how to use react-bootstrap container at https://react-bootstrap.github.io/layout/grid/
