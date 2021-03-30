@@ -36,6 +36,16 @@ class JoblyApi {
 
   // Individual API routes
 
+  static async authenticate(data) {
+    try {
+      await this.request("auth/token", data, "post");
+      return true;
+    }
+    catch (err) {
+      return false;
+    }
+  }
+
   /** Gets token for user. */
 
   static async getToken(data) {
@@ -89,6 +99,13 @@ class JoblyApi {
 
   static async getUser(username) {
     const res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  /** Edits user, provided valid password. */
+
+  static async editUser(username, data) {
+    const res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
 }

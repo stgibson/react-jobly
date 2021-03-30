@@ -113,6 +113,28 @@ function App() {
     setJobs(newJobs);
   };
 
+  const editUser = async (data, password) => {
+    let errors = [];
+    try {
+      // first verify password
+      if (await JoblyApi.authenticate(
+        { username: currentUser.username, password: password }
+      )) {
+        const newUser = await JoblyApi.editUser(currentUser.username, data);
+        setCurrentUser(newUser);
+      }
+      else {
+        throw ["Incorrect password"];
+      }
+    }
+    catch (err) {
+      errors = err;
+    }
+    finally {
+      return { errors };
+    }
+  };
+
   // get list of all companies & jobs
   useEffect(() => {
     findAllCompanies();
@@ -141,7 +163,7 @@ function App() {
     if (token) {
       getCurrentUser();
     }
-  }, [token])
+  }, [token]);
 
   return (
     <div>
@@ -164,7 +186,7 @@ function App() {
             </Route>
             <Route exact path="/login"><Login login={ login } /></Route>
             <Route exact path="/signup"><Signup signup={ signup } /></Route>
-            <Route exact path="/profile"><Profile /></Route>
+            <Route exact path="/profile"><Profile editUser={ editUser } /></Route>
             <Route><Redirect to="/" /></Route>
           </Switch>
         </BrowserRouter>
