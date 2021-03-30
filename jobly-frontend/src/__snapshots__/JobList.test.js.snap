@@ -62,6 +62,12 @@ exports[`matches snapshot 1`] = `
             >
               Equity: 0.1
             </p>
+            <button
+              class="btn btn-danger"
+              type="button"
+            >
+              APPLY
+            </button>
           </div>
         </div>
         <div
@@ -86,6 +92,12 @@ exports[`matches snapshot 1`] = `
             >
               Equity: 0.2
             </p>
+            <button
+              class="btn btn-danger"
+              type="button"
+            >
+              APPLY
+            </button>
           </div>
         </div>
         <div
@@ -110,6 +122,12 @@ exports[`matches snapshot 1`] = `
             >
               Equity: 0.3
             </p>
+            <button
+              class="btn btn-danger"
+              type="button"
+            >
+              APPLY
+            </button>
           </div>
         </div>
       </div>
