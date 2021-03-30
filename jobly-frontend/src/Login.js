@@ -34,7 +34,7 @@ const Login = ({ login }) => {
    */
   const handleSubmit = async evt => {
     evt.preventDefault();
-    const { errors } = await login(formData)
+    const { errors } = await login(formData);
     if (errors.length) {
       setErrors(errors);
     }

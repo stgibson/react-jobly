@@ -40,7 +40,7 @@ const Signup = ({ signup }) => {
    */
   const handleSubmit = async evt => {
     evt.preventDefault();
-    const { errors } = await signup(formData)
+    const { errors } = await signup(formData);
     if (errors.length) {
       setErrors(errors);
     }
